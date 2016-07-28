@@ -8,6 +8,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', admin.site.urls),
-
-    url(r'^$', car.views.test)
+    url(r'^$', car.views.view_all),
+    url(r'^id(?P<id>\d)/$', car.views.different),
 )
