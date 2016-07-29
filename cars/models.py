@@ -1,12 +1,5 @@
+from django.core.urlresolvers import reverse
 from django.db import models
-
-
-class TimeStampedModel(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        abstract = True
 
 
 class Engine(models.Model):
@@ -20,10 +13,19 @@ class Engine(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('car_detail', kwargs={'pk': self.pk})
+
 
 class Dye(models.Model):
     kind = models.CharField(max_length=15)
     colour = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.colour
+
+    def get_absolute_url(self):
+        return reverse('car_detail', kwargs={'pk': self.pk})
 
 
 class Wheels(models.Model):
@@ -32,6 +34,12 @@ class Wheels(models.Model):
     diagonal = models.FloatField(max_length=3)
     width = models.FloatField(max_length=3)
 
+    def __str__(self):
+        return self.brand
+
+    def get_absolute_url(self):
+        return reverse('car_detail', kwargs={'pk': self.pk})
+
 
 class Car(models.Model):
     mark = models.CharField(max_length=30)
@@ -39,8 +47,11 @@ class Car(models.Model):
     engine = models.ForeignKey(Engine)
     color = models.ForeignKey(Dye)
     manufacturer_country = models.CharField(max_length=30)
-    wheels = models.ManyToManyField(Wheels)
+    wheels = models.ForeignKey(Wheels)
     options = models.TextField(max_length=300)
 
     def __str__(self):
         return "{} - {}".format(self.mark, self.series)
+
+    def get_absolute_url(self):
+        return reverse('car_detail', kwargs={'pk': self.pk})
