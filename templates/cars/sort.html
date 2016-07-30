@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <form action="" method="get" accept-charset="utf-8">
+    <p>Sort by</p>
+        <select name="by">
+            <option>Mark</option>
+            <option>Series</option>
+            <option>Body</option>
+            <option>Cost</option>
+            <option value="engine__horsepower">Power</option>
+            <option value="engine__capacity">Capacity</option>
+        </select>
+        <select name="in">
+            <option value="">in ascending order</option>
+            <option value="-">in decreasing order</option>
+        </select>
+      <button type="submit">Enter</button>
+    </form>
+{% endblock %}

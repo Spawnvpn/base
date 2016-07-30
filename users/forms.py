@@ -1,7 +1,6 @@
 import datetime
 from django import forms
-from django.contrib.auth import authenticate
-from users.models import BaseUser
+from django.contrib.auth import authenticate, models
 
 
 class LoginForm(forms.Form):
@@ -29,7 +28,6 @@ class RegisterUserForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     birth_date = forms.DateField()
-    # phone_number = PhoneNumberField()
     phone_number = forms.CharField()
 
     def clean_birth_date(self):
@@ -47,7 +45,7 @@ class RegisterUserForm(forms.ModelForm):
         return password2
 
     class Meta:
-        model = BaseUser
+        model = models.User
         fields = (
             "username",
             "password1",
@@ -55,6 +53,4 @@ class RegisterUserForm(forms.ModelForm):
             "email",
             "first_name",
             "last_name",
-            "birth_date",
-            "phone_number",
         )

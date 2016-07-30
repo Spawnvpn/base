@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>{{ car.pk }}, {{ car.mark }}, {{ car.series }}, {{ car.engine }}, {{ car.wheels }}, {{ car.color }}</p>
+    <p>{{ car.pk }}, {{ car.mark }}, {{ car.series }}, {{ car.engine }}, {{ car.wheels }}, {{ car.color }} | created by {{ car.author }}</p>
+    <a href="{{ car.get_absolute_url }}update/"><p>Edit car</p></a>
 {% endblock %}

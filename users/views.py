@@ -1,7 +1,6 @@
 from django.contrib.auth import logout, authenticate, login
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
-
 from users.forms import RegisterUserForm, LoginForm
 
 
@@ -21,7 +20,8 @@ def login_user(request):
 
 
 def logout_user(request):
-    logout(request)
+    if request.method == 'POST':
+        logout(request)
     return redirect(reverse("login"))
 
 
@@ -36,4 +36,4 @@ def register_user(request):
         return redirect("/")
 
     return render(request, "users/register.html", context={"form": form,
-    "name": "Register"})
+                                                           "name": "Register"})
