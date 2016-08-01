@@ -1,0 +1,24 @@
+.search {
+    display: inline-block;
+}
+
+.sort {
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.login-logout {
+    float: right;
+    margin: 10px;
+}
+
+#main-link {
+    margin: 10px;
+}
+
+#app-name {
+    font-size: 20px;
+    color: #fdfdfd;
+}

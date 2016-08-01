@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>{{ car.pk }}, {{ car.mark }}, {{ car.series }}, {{ car.engine }}, {{ car.wheels }}, {{ car.color }} | created by {{ car.author }}</p>
-    <a href="{{ car.get_absolute_url }}update/"><p>Edit car</p></a>
+    <div class="jumbotron">
+        <h1>{{ car.mark }} Series {{ car.series }}</h1>
+        <p>Engine: {{ car.engine }}</p><br>
+        <p>Manufacturer: {{ car.manufacturer_country }}</p><br>
+        <p>Wheels: {{ car.wheels }}</p><br>
+        <p>Color: {{ car.color }}</p><br>
+        <p><a class="btn btn-primary btn-lg" href="{{ car.get_absolute_url }}update" role="button">Edit</a></p>
+    </div>
+    <nav class="navbar navbar-dark bg-primary">
+    <p class="navbar-text"> Created by {{ car.author }}</p>
+    </nav>
 {% endblock %}

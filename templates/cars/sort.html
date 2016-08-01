@@ -1,7 +1,7 @@
 {% block content %}
     <form action="" method="get" accept-charset="utf-8">
-    <p>Sort by</p>
-        <select name="by">
+    Sort by
+        <select name="by" class="selectpicker">
             <option>Mark</option>
             <option>Series</option>
             <option>Body</option>
@@ -9,10 +9,10 @@
             <option value="engine__horsepower">Power</option>
             <option value="engine__capacity">Capacity</option>
         </select>
-        <select name="in">
+        <select name="in" class="selectpicker">
             <option value="">in ascending order</option>
             <option value="-">in decreasing order</option>
         </select>
-      <button type="submit">Enter</button>
+      <button class="btn btn-info btn-sm" type="submit">Enter</button>
     </form>
 {% endblock %}

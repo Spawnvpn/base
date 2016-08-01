@@ -1,28 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-        {% include 'cars/search.html' %}
-        {% include 'cars/sort.html' %}
-<h2>Cars:</h2>
-    <ul>
-    {% for car in car_list %}
-        <li><a href="{{ car.get_absolute_url }}">{{ car.mark }} | {{ car.series }}</a></li>
-    {% endfor %}
-    <a href="/cars/create/"><b>Create new car</b></a>
-    </ul>
-    {% if user.is_authenticated %}
-        <form action="/logout/" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="Logout">
-        </form>
-    {% else %}
-        <form method="POST" action="/login/" name="login">
-            {% csrf_token %}
-            <input type="submit" value="Login" name="login">
-        </form>
-        <form method="POST" action="/register/" name="register">
-            {% csrf_token %}
-            <input type="submit" value="Register" name="register">
-        </form>
-    {% endif %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+            <nav class="navbar navbar-dark bg-primary">
+                <p id="app-name" class="navbar-text">Cars</p>
+                <div class="sort">{% include 'cars/sort.html' %}</div>
+            </nav>
+                {% for car in car_list %}
+                    <li role="presentation"><a href="{{ car.get_absolute_url }}">{{ car.mark }} | {{ car.series }} | {{ car.engine }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    <div class="panel-footer"><a class="btn btn-info"  role="button" href="/cars/create/"><b>Create new car</b></a></div>
+    </div>
 {% endblock %}
