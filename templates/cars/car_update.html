@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <form method="post" action="">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button class="btn btn-primary">Update</button>
+    <a class="btn btn-danger" href="{{ car.get_absolute_url }}delete/">Delete</a>
     </form>
-    <a href="{{ car.get_absolute_url }}delete/">Delete</a>
 {% endblock %}

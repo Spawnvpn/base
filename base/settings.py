@@ -37,6 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+
     'cars',
     'users',
 )
@@ -108,3 +110,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     'base/../static/',
 ]
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
