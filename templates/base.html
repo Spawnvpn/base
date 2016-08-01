@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
         {% block head %}
-
+            <a href="/">Go to main page</a>
         {% endblock %}
 </head>
 <body>
 <div class="container">
-    {% block content %} {% endblock %}
+    {% block content %}
+    {% endblock %}
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 {% block js %} {% endblock %}
