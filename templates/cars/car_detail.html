@@ -7,7 +7,9 @@
         <p>Manufacturer: {{ car.manufacturer_country }}</p><br>
         <p>Wheels: {{ car.wheels }}</p><br>
         <p>Color: {{ car.color }}</p><br>
+        {% if user.is_authenticated %}
         <p><a class="btn btn-primary btn-lg" href="{{ car.get_absolute_url }}update" role="button">Edit</a></p>
+        {% endif %}
     </div>
     <nav class="navbar navbar-dark bg-primary">
     <p class="navbar-text"> Created by {{ car.author }}</p>
