@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="post" action="" class="uniForm">
+    <form method="post" action="">
         {% csrf_token %}
         {{ form|crispy }}
         <button class="btn btn-info">Register</button>
