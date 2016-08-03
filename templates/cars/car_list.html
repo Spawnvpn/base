@@ -1,35 +1,86 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="panel panel-default">
+    <div class="panel panel-default col-xs-12">
         <div class="panel-body">
             <ul class="nav nav-pills nav-stacked">
-            <nav class="navbar navbar-dark bg-primary">
-                <p id="app-name" class="navbar-text">Cars</p>
-                <div class="sort">{% include 'cars/sort.html' %}</div>
+            <nav class="navbar navbar-dark bg-default">
+{#                <p id="app-name" class="navbar-text">Cars</p>#}
+{#                <div class="sort">{% include 'cars/sort.html' %}</div>#}
+{#            </nav>#}
+{#            <nav class="navbar navbar-default">#}
+                <div class="panel-heading">
+                    <table class="table table-condensed" id="car-list-table">
+                        <thead>
+                            <tr>
+                                <th>Mark</th>
+                                <th>Series</th>
+                                <th>Color</th>
+                                <th>Engine</th>
+                                <th>Capacity</th>
+                                <th>Horsepower</th>
+                                <th>Manufacturer</th>
+                                <th>Year</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for car in car_list %}
+                                    <tr class="clickable-row" data-href="{{ car.get_absolute_url }}">
+                                        <td class="car-params">{{ car.mark }}</td>
+                                        <td class="car-params">{{ car.series }}</td>
+                                        <td class="car-params">{{ car.color }}</td>
+                                        <td class="car-params">{{ car.engine }}</td>
+                                        <td class="car-params">{{ car.engine.capacity }}</td>
+                                        <td class="car-params">{{ car.engine.horsepower }}</td>
+                                        <td class="car-params">{{ car.manufacturer_country }}</td>
+                                        <td class="car-params">{{ car.year }}</td>
+                                        <td class="car-params">{{ car.cost }}</td>
+                                    </tr>
+                                {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </nav>
-                {% for car in car_list %}
-                    <li role="presentation"><a href="{{ car.get_absolute_url }}">{{ car.mark }} | {{ car.series }} | {{ car.engine }}</a></li>
-                {% endfor %}
             </ul>
+        {% if user.is_authenticated %}
+            <a class="btn btn-info"  role="button" href="/cars/create/"><b>Create new car</b></a>
+        {% endif %}
         </div>
-    {% if user.is_authenticated %}
-    <div class="panel-footer"><a class="btn btn-info"  role="button" href="/cars/create/"><b>Create new car</b></a></div>
-    {% endif %}
     </div>
-    {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="page/{{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="page/{{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-            </span>
-        </div>
-    {% endif %}
+{#    {% if is_paginated %}#}
+{#        <div class="pagination">#}
+{#            <span class="page-links">#}
+{#                {% if page_obj.has_previous %}#}
+{#                    <a href="page/{{ page_obj.previous_page_number }}">previous</a>#}
+{#                {% endif %}#}
+{#                <span class="page-current">#}
+{#                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}#}
+{#                </span>#}
+{#                {% if page_obj.has_next %}#}
+{#                    <a href="page/{{ page_obj.next_page_number }}">next</a>#}
+{#                {% endif %}#}
+{#            </span>#}
+{#        </div>#}
+{#    {% endif %}#}
+    <script>
+        $(document).ready(function() {
+            $('#car-list-table').dataTable();
+        });
+        $(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
+        });
+        $(document).ready(function() {
+            $('.car-params').hover(function(){
+                $(this).css({
+                    'cursor': 'pointer'});
+                });
+            },
+            function(){
+                (this).css({
+                    'background-color': ''});
+        });
+    </script>
 {% endblock %}

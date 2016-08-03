@@ -31,6 +31,7 @@ class Dye(models.Model):
 
 class Wheels(models.Model):
     brand = models.CharField(max_length=30)
+    series = models.CharField(max_length=30, null=True, blank=True)
     kind = models.CharField(max_length=30)  # metal, alloy, titanium
     diagonal = models.FloatField(max_length=3, null=True, blank=True)
     width = models.FloatField(max_length=3, null=True, blank=True)
@@ -51,12 +52,13 @@ class Car(models.Model):
     manufacturer_country = models.CharField(max_length=30, null=True, blank=True)
     wheels = models.ForeignKey(Wheels)
     cost = models.FloatField(max_length=20, null=True, blank=True)
-    options = models.TextField(max_length=300, null=True, blank=True)
-
+    options = models.TextField(max_length=1200, null=True, blank=True)
+    year = models.IntegerField(null=True, blank=True)
+    image = models.FileField(null=True, blank=True)
     author = models.ForeignKey(User)
 
     def __str__(self):
-        return "{} - {}".format(self.mark, self.series)
+        return "{}    {}".format(self.mark, self.series)
 
     def get_absolute_url(self):
         return reverse('car_detail', kwargs={'pk': self.pk})

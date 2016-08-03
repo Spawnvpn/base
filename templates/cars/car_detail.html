@@ -1,17 +1,44 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
     <div class="jumbotron">
+        <div class="col-xs-4 image-car">
+            <a href="#">
+                <img class="img-rounded" alt="Cinque Terre" width="304" height="236" src="{{ car.image.url }}">
+            </a>
+        </div>
+        <div class="container">
         <h1>{{ car.mark }} Series {{ car.series }}</h1>
-        <p>Engine: {{ car.engine }}</p><br>
-        <p>Manufacturer: {{ car.manufacturer_country }}</p><br>
-        <p>Wheels: {{ car.wheels }}</p><br>
-        <p>Color: {{ car.color }}</p><br>
+        <h2>Cost: ${{ car.cost|floatformat }}</h2>
+        <h3>Year: {{ car.year }}</h3>
+        </div>
+        <div class="container">
+            <div class="detail-car col-xs-5">
+                <table class="table-responsive">
+                    <tr class="detail-text"><td>Engine:</td><td>{{ car.engine }}</td></tr>
+                    <tr class="detail-text"><td>Capacity:</td> <td>{{ car.engine.capacity }}</td></tr>
+                    <tr class="detail-text"><td>Horsepower:</td> <td>{{ car.engine.horsepower }}</td></tr>
+                    <tr class="detail-text"><td>Number of cylinders:</td> <td>{{ car.engine.number_of_cylinders }}</td></tr>
+                    <tr class="detail-text"><td>Number of valves:</td> <td>{{ car.engine.valves }}</td></tr>
+                    <tr class="detail-text"><td>Manufacturer:</td> <td>{{ car.manufacturer_country }}</td></tr>
+                    <tr class="detail-text"><td>Wheels:</td> <td>{{ car.wheels }} {{ car.wheels.diagonal|floatformat }}",<br>kind - {{ car.wheels.kind }}</td></tr>
+                    <tr class="detail-text"><td>Color:</td> <td>{{ car.color }}, kind - {{ car.color.kind }}</td></tr>
+                </table>
+            </div>
+
+            <div class="car-options col-xs-6">
+                <p>Options:</p>
+                <span class="options-text">{{ car.options }}</span>
+            </div>
+        </div>
         {% if user.is_authenticated %}
-        <p><a class="btn btn-primary btn-lg" href="{{ car.get_absolute_url }}update" role="button">Edit</a></p>
+            <div class="container edit-button">
+                <a class="btn btn-primary btn-lg" href="{{ car.get_absolute_url }}update" role="button">Edit</a>
+            </div>
         {% endif %}
     </div>
     <nav class="navbar navbar-dark bg-primary">
-    <p class="navbar-text"> Created by {{ car.author }}</p>
+        <p class="navbar-text"> Created by {{ car.author }}</p>
     </nav>
 {% endblock %}

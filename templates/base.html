@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
         {% load static %}
@@ -20,19 +20,29 @@
             <link rel="script" href="{% static 'js/bootstrap.min.js' %}">
             <nav class="navbar navbar-dark bg-primary">
             <a id="main-link" class="btn btn-info"  href="/">Go to main page</a>
-            <div class="search">{% include "cars/search.html" %}</div>
+                <div class="container-fluid logo">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="">
+                            <img width="70" height="30" alt="Brand" src="/static/media/new_logo.png">
+                        </a>
+                    </div>
+                </div>
+
+{#            <div class="search">{% include "cars/search.html" %}</div>#}
             <div class="login-logout">
             {% if user.is_authenticated %}
-                <form action="/logout/" method="POST">
+                <form action="/logout/" class="logout" method="POST">
                     {% csrf_token %}
-                    <input class="btn btn-info"  role="button" type="submit" value="Logout">
+                    <input class="btn btn-info logout"  role="button" type="submit" value="Logout">
                 </form>
+                <div class="user-string"><a href="" class="btn btn-success" role="button">You signed in as {{ user.username }}</a></div>
             {% else %}
-                <a class="btn btn-info"  role="button" href="/login/">Login</a>
-                <a class="btn btn-info" role="button" href="/register/">Register</a>
+                <a class="btn btn-info login"  role="button" href="/login/">Login</a>
+                <a class="btn btn-info register" role="button" href="/register/">Register</a>
             {% endif %}
-            </nav>
             </div>
+            </nav>
+
         {% endblock %}
 </head>
 <body>

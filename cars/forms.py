@@ -16,5 +16,7 @@ class CarCreateForm(forms.ModelForm):
             'manufacturer_country',
             'wheels',
             'cost',
+            'year',
             'options',
+            'image',
         )

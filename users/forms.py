@@ -21,12 +21,9 @@ class LoginForm(forms.Form):
 
 
 class RegisterUserForm(forms.ModelForm):
-    username = forms.CharField()
+    username = forms.CharField(max_length=30)
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
-    email = forms.EmailField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
     birth_date = forms.DateField()
     phone_number = forms.CharField()
 
@@ -54,3 +51,4 @@ class RegisterUserForm(forms.ModelForm):
             "first_name",
             "last_name",
         )
+

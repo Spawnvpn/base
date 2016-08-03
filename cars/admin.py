@@ -4,19 +4,21 @@ from django.contrib import admin
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['mark', 'series', 'engine', 'color', 'wheels', 'cost', 'year', 'manufacturer_country']
+    list_editable = ('series', 'engine', 'color', 'wheels', 'cost', 'year', 'manufacturer_country')
 
 
 @admin.register(Engine)
-class CarAdmin(admin.ModelAdmin):
-    pass
+class EngineAdmin(admin.ModelAdmin):
+    list_display = ['name', 'capacity', 'number_of_cylinders', 'horsepower', ]
+    list_editable = ('capacity', 'number_of_cylinders', 'horsepower')
 
 
 @admin.register(Dye)
-class CarAdmin(admin.ModelAdmin):
+class DyeAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(Wheels)
-class CarAdmin(admin.ModelAdmin):
+class WheelsAdmin(admin.ModelAdmin):
     pass

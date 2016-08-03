@@ -12,10 +12,12 @@
 .login-logout {
     float: right;
     margin: 10px;
+    vertical-align: middle;
 }
 
 #main-link {
-    margin: 10px;
+    margin-top: 12px;
+    margin-left: 10px;
 }
 
 #app-name {
@@ -26,6 +28,82 @@
 #delete-confirm {
     padding: 20px;
     font-size: 20px;
+        }
+
+.table-head {
+    margin: auto;
+}
+
+.clickable-row:hover {
+    background-color: #efecff;
+}
+
+.clickable-row {
+    width: 40px;
+}
+
+.user-string {
+    float: right;
+    color: floralwhite;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.logout {
+    display: inline-block;
+    float: right;
+}
+
+
+
+.image-car {
+    float: right;
+    display: inline;
+}
+
+.detail-car {
+    background-color: #dedee7;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: inline-block;
+    float: left;
+    line-height: 40px;
+}
+
+.detail-text {
+    border-bottom: solid #6c7280 1px;
+}
+
+.detail-text:nth-last-child(1) {
+    border-bottom: none;
+}
+
+.car-options {
+    float: right;
+    display: inline-block;
+    margin-top: 20px;
+    line-height: 15px;
+    border-radius: 5px;
+    background-color: #dedee7;
+    padding: 10px;
+    text-align: justify;
+}
+
+.options-text {
+    font-size: 15px;
+}
+
+.edit-button {
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: inline-block;
+    font-family: KacstBook;
+    font-size: 25px;
+    vertical-align: top;
+    padding-bottom: 10px;
 }
 
 select {

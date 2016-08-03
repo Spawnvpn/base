@@ -41,7 +41,7 @@ class CarDetailView(DetailView):
 class CarListView(ListView):
     model = Car
     context_object_name = 'car_list'
-    paginate_by = 10
+    # paginate_by = 10
     template_name = 'cars/car_list.html'
 
     def get_queryset(self):
