@@ -12,7 +12,7 @@ class Engine(models.Model):
     horsepower = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return "{} - {} ".format(self.name, self.capacity)
 
     def get_absolute_url(self):
         return reverse('car_detail', kwargs={'pk': self.pk})

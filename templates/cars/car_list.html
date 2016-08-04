@@ -5,10 +5,10 @@
         <div class="panel-body">
             <ul class="nav nav-pills nav-stacked">
             <nav class="navbar navbar-dark bg-default">
-{#                <p id="app-name" class="navbar-text">Cars</p>#}
-{#                <div class="sort">{% include 'cars/sort.html' %}</div>#}
-{#            </nav>#}
-{#            <nav class="navbar navbar-default">#}
+                <p id="app-name" class="navbar-text">Cars</p>
+                <div class="sort">{% include 'cars/sort.html' %}</div>
+            </nav>
+            <nav class="navbar navbar-default">
                 <div class="panel-heading">
                     <table class="table table-condensed" id="car-list-table">
                         <thead>
@@ -30,7 +30,7 @@
                                         <td class="car-params">{{ car.mark }}</td>
                                         <td class="car-params">{{ car.series }}</td>
                                         <td class="car-params">{{ car.color }}</td>
-                                        <td class="car-params">{{ car.engine }}</td>
+                                        <td class="car-params">{{ car.engine.name }}</td>
                                         <td class="car-params">{{ car.engine.capacity }}</td>
                                         <td class="car-params">{{ car.engine.horsepower }}</td>
                                         <td class="car-params">{{ car.manufacturer_country }}</td>

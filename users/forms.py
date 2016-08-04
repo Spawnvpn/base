@@ -1,6 +1,35 @@
 import datetime
 from django import forms
 from django.contrib.auth import authenticate, models
+from django.forms.widgets import TextInput, MultiWidget, Select
+
+
+class PhoneWidget(MultiWidget):
+    def __init__(self, attrs=None, **kwargs):
+        widgets = [Select(choices=(('+38', '+38'), ('+7', '+7'))),
+                   Select(choices=(('050', '050'), ('095', '095'),)),
+                   TextInput(attrs={'size': 7, 'max_length': 7})]
+        super(PhoneWidget, self).__init__(widgets, attrs)
+
+    def decompress(self, value):
+        if value:
+            return [value.code, value.operator, value.number]
+        return ["", "", ""]
+
+    def format_output(self, rendered_widgets):
+        return rendered_widgets[0] + "(" + rendered_widgets[1] + ")" + rendered_widgets[2]
+
+
+class PhoneField(forms.MultiValueField):
+    def __init__(self, *args, **kwargs):
+        list_fields = [forms.CharField(),
+                       forms.CharField(),
+                       forms.CharField()]
+        super(PhoneField, self).__init__(
+            list_fields, widget=PhoneWidget(), *args, **kwargs)
+
+    def compress(self, values):
+        return values[0] + values[1] + values[2]
 
 
 class LoginForm(forms.Form):
@@ -25,7 +54,7 @@ class RegisterUserForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
     birth_date = forms.DateField()
-    phone_number = forms.CharField()
+    phone_number = PhoneField()
 
     def clean_birth_date(self):
         date = self.cleaned_data.get("birth_date")
@@ -50,5 +79,6 @@ class RegisterUserForm(forms.ModelForm):
             "email",
             "first_name",
             "last_name",
+            "phone_number",
         )
 
